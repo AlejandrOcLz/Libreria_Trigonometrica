@@ -98,7 +98,7 @@ coseno:
     movss %xmm0, %xmm1 #asiganmos valor de y a cada distintos registros para usarlos despues
     movss %xmm0, %xmm2
 
-    mulss %xmm0, %xmm0 
+    mulss %xmm0, %xmm0 #Multiplicamos valor inicial en y con el mismo ya que su operacion se realiza con una potencia y^2
     mulss c, %xmm0 
 
     movss pi2, %xmm3

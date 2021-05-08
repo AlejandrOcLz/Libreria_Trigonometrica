@@ -99,20 +99,19 @@ coseno:
     movss %xmm0, %xmm2
 
     mulss %xmm0, %xmm0 #Multiplicamos valor inicial en y con el mismo ya que su operacion se realiza con una potencia y^2
-    mulss c, %xmm0 
+    mulss c, %xmm0 #multiplicamos 4 por la cantidad al cuadrado de y -> xmm0= xmm0 * 4(y^2)
 
-    movss pi2, %xmm3
+    movss pi2, %xmm3 #asignamos a xmm3 el valor de pi al cuadrado -> xmm3 = pi2
     
-    subss %xmm0, %xmm3
-    movss %xmm3, %xmm0
+    subss %xmm0, %xmm3 # restamos el valor de pi^2 menos el valor de 4y^2 -> xmm3 = xmm0 - xmm3
+    movss %xmm3, %xmm0 # reasignamos el valor almacenado en el registro xmm3 al xmm0 -> xmm0 = xmm3
 
-    mulss %xmm1, %xmm1
-    movss pi2, %xmm3
+    mulss %xmm1, %xmm1 #Multiplicamos valor inicial en y con el mismo ya que su operacion se realiza con una potencia y^2
+    movss pi2, %xmm3 #asignamos a xmm3 el valor de pi al cuadrado -> xmm3 = pi2
 
-    addss %xmm1, %xmm3
-    movss %xmm3, %xmm1
+    addss %xmm3, %xmm1 # sumamos el valor xmm1 mas xmm3 -> xmm3 = xmm1 + xmm3
 
-    divss %xmm1, %xmm0
+    divss %xmm1, %xmm0 # dividimos los valores almacenados en el numerador y en el denominador -> xmm0 = xmm0 / xmm1
     
 fin1: 
     ret

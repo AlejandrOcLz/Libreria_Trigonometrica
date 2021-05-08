@@ -21,16 +21,16 @@ seno:
     mov $0, %rbx # usaremos un registro como bandera
     
     #Creamos condiciones para cada uno de los casos
-    ucomiss casu ,%xmm0 #if(1.57 == xmm0) true -> caso1:
+    ucomiss casu ,%xmm0 #if(1.57 >= xmm0) true -> caso1:
     jb casoseno
 
-    ucomiss pi ,%xmm0 #if(3.1415 == xmm0) true -> caso2:
+    ucomiss pi ,%xmm0 #if(3.1415 >= xmm0) true -> caso2:
     jb caso2
 
-    ucomiss cast ,%xmm0 #if(4.71 == xmm0) true -> caso3:
+    ucomiss cast ,%xmm0 #if(4.71 >= xmm0) true -> caso3:
     jb caso3
 
-    ucomiss casc ,%xmm0 #if(6.2831 == xmm0) true -> caso4:
+    ucomiss casc ,%xmm0 #if(6.2831 >= xmm0) true -> caso4:
     jb caso4
 
 caso2:
@@ -95,6 +95,48 @@ fin:
     ret
 
 coseno:
+
+mov $0, %rbx # usaremos un registro como bandera
+    
+    #Creamos condiciones para cada uno de los casos
+    ucomiss casu ,%xmm0 #if(1.57 >= xmm0) true -> caso1:
+    jb casocoseno
+
+    ucomiss pi ,%xmm0 #if(3.1415 >= xmm0) true -> caso2:
+    jb caso21
+
+    ucomiss cast ,%xmm0 #if(4.71 >= xmm0) true -> caso3:
+    jb caso31
+
+    ucomiss casc ,%xmm0 #if(6.2831 >= xmm0) true -> caso4:
+    jb caso41
+
+
+caso21:
+    movss pi,%xmm1 # le asignamos a xmm1 = pi 
+    subss %xmm0,%xmm1 # restamos xmm1 = xmm1 - xmm0
+    movss %xmm1,%xmm0 # le reasignamos a xmm0 = xmm1
+    mov $1, %rbx # Cambiamos el valor de la bandera
+
+    jb casocoseno # Saltamos hasta la etiqueta que operamos el valor de x
+
+caso31:
+    subss pi,%xmm0 # Restamos a xmm0 pi, xmm0 = xmm0 -pi
+    mov $1, %rbx # Cambiamos el valor de la bandera
+
+    jb casocoseno# Saltamos hasta la etiqueta que operamos el valor de x
+
+caso41:
+    movss pi,%xmm1 # le asignamos a xmm1 = pi 
+    mulss dos,%xmm1 # dos = 2 lo multiplicamos por xmm1, xmm1 = xmm1 * dos
+    subss %xmm0,%xmm1 # restamos xmm1 = xmm1 - xmm0
+    movss %xmm1,%xmm0 # le reasignamos a xmm0 = xmm1
+
+
+    jb casocoseno# Saltamos hasta la etiqueta que operamos el valor de x
+
+
+casocoseno:
     movss %xmm0, %xmm1 #asiganmos valor de y a cada distintos registros para usarlos despues
     movss %xmm0, %xmm2
 
@@ -112,6 +154,12 @@ coseno:
     addss %xmm3, %xmm1 # sumamos el valor xmm1 mas xmm3 -> xmm3 = xmm1 + xmm3
 
     divss %xmm1, %xmm0 # dividimos los valores almacenados en el numerador y en el denominador -> xmm0 = xmm0 / xmm1
+
+    cmp $0,%rbx # Comparamos if(0==rbx)
+    jz fin # Si se cumple saltamos la etiqueta comprobar y pasamos al fin, en caso contrario pasamos a comprobar
+
+comprobar1: # Valorizaremos los valores que pertenecen al rango de 3pi medios hasta 2pi
+    mulss rest,%xmm0 # multiplicamos el registro xmm0 por -1 
     
 fin1: 
     ret

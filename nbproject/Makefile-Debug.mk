@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Seno.o \
+	${OBJECTDIR}/Trigonometrico.o \
 	${OBJECTDIR}/main.o
 
 
@@ -63,9 +63,9 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/seno_library: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/seno_library ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/Seno.o: Seno.s
+${OBJECTDIR}/Trigonometrico.o: Trigonometrico.s
 	${MKDIR} -p ${OBJECTDIR}
-	$(AS) $(ASFLAGS) -g -o ${OBJECTDIR}/Seno.o Seno.s
+	$(AS) $(ASFLAGS) -g -o ${OBJECTDIR}/Trigonometrico.o Trigonometrico.s
 
 ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}

@@ -95,10 +95,10 @@ fin:
     ret
 
 coseno:
-    movss %xmm0, %xmm1
+    movss %xmm0, %xmm1 #asiganmos valor de y a cada distintos registros para usarlos despues
     movss %xmm0, %xmm2
 
-    mulss dos, %xmm0
+    mulss %xmm0, %xmm0 
     mulss c, %xmm0 
 
     movss pi2, %xmm3
@@ -106,7 +106,7 @@ coseno:
     subss %xmm0, %xmm3
     movss %xmm3, %xmm0
 
-    mulss dos, %xmm1
+    mulss %xmm1, %xmm1
     movss pi2, %xmm3
 
     addss %xmm1, %xmm3
